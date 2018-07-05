@@ -1,0 +1,109 @@
+﻿.ctime{
+	position:fixed;bottom:0;left:0;right:0;background:#fff;
+	h1{text-align:center;font-size:1.4rem;position:relative;padding:.8rem 0;
+	  &:after{content:"";pointer-events:none;position:absolute;width:200%;height:200%;left: 0;top:0;border-top:1px solid #f3f3f3;border-bottom:1px solid #f3f3f3;-webkit-transform:(scale(0.5));-webkit-transform-origin:0 0;transform:(scale(0.5));transform-origin: 0 0;}
+	}
+	dl{
+		display:-webkit-box;
+		display:-moz-box;
+		display:-ms-flexbox;
+		display:-webkit-flex;
+		display:flex;height:15rem;overflow:hidden;position:relative;border:1px solid #000;
+		dd{display:inline-block;width:33.3333%;font-size:1.3rem;text-align:center;height:2rem;line-height:2;}
+		dt{position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);height:2rem;line-height:2;border-top:1px solid #000;border-bottom:1px solid #000;
+			div{text-align:center;display:inline-block;width:33.3333%;background:#fff;border-bottom:1px solid #f00;}
+		}
+	}
+}
+.dateArea{
+	z-index:101;overflow:hidden;position:fixed;left:0;top:4.4rem;right:0;
+	bottom:0;background:#fff;
+	.main{
+		a{color:#fff;}
+	}
+	.days{
+		display:-webkit-flex;display:flex;flex-wrap:wrap;position:relative;
+		li{width:14%;display:inline-block;text-align:center;font-size:1.4rem;position:relative;
+			div{text-align:center;width:3.3rem;height:3rem;line-height:3rem;font-size:1.5rem;
+				
+			}
+			.orange{color:#FEAF3F;}
+			.gray{color:#5C636C;}
+		}
+		
+	}
+}
+.datelist{
+	position:absolute;
+	left:0;
+	right:0;
+	bottom:0;
+	top:10rem;
+	&>div{width:100%;position:absolute;background:#fff;}
+}
+.calendar{
+	.selectedDate{
+			background:#F9FDFE;border-bottom:1px solid #F9FDFE;padding-top:.8rem;padding-bottom:.6rem;
+			display:-webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+			display:-moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
+			display:-ms-flexbox; /* TWEENER - IE 10 */
+			display:-webkit-flex; /* NEW - Chrome */
+			display:flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+			position:relative;
+			li{display:inline-block;width:50%;text-align:center;line-height:1.8;
+				h1{font-size:1.4rem;color:#5A616A;padding-right:3.5rem;
+					em{display:inline-block;width:1.1rem;}
+				}
+				p{
+					font-size:1.8rem;color:#5A616A;	
+					label.year{font-size:1.2rem;color:#9CA0A6;display:inline-block;width:4rem;vertical-align:middle;}
+				}
+			}
+			i{position:absolute;left:50%;top:2.8rem;margin-left:-.6rem;font-size:13px;color:#5A616A;}
+	}
+	.dateTop{
+		background:#F9FDFE;
+		li{width:50%;text-align:center;display:inline-block;padding:1.4rem 0;.bborder();line-height:1.8;font-size:1.8rem;
+			h1{font-size:1.5rem;}
+			em{font-size:1.2rem;color:#9CA0A6;margin-left:.5rem;}
+		}
+	}
+	table.weekend{
+		width:90%;margin:0 auto;
+		td{width:14%;padding-top:1rem;padding-bottom:1rem;font-size:1.4rem;}
+		div{text-align:center;width:3.3rem;height:3rem;line-height:2;font-size:1.5rem;}
+		.orange{font-size:14px;color:#FEAF3F;}
+		.gray{color:#5C636C;}
+	}
+	.cur{background:#70baff;color:#fff;border-radius:.2rem;}
+	.month{
+		h1.title{font-size:1.4rem;color:@txt1;background:#F3F8F8;text-align:center;padding:.9rem 0;}
+	}
+	.month{
+		table{
+			width:90%;margin:.7rem auto;
+			//tr{display:block;margin:.5rem auto;width:70%;border:1px solid #000;}
+			tr{text-align:center;}
+			td{font-size:1.5rem;vertical-align:top;}
+			div{
+				text-align:center;display:inline-block;width:3.3rem;height:3rem;line-height:2;font-size:1.5rem;
+				p{padding-top:.9rem;font-size:1rem;color:#5C636C;}
+			}
+			div.on{
+				color:#fff;background:#70BAFF;border-radius:.2rem;
+				p{color:#fff;}
+			}
+			.active{background:#ebf4fb;}
+			.first{color:#fff;background:#70BAFF;border-radius:.2rem;}
+			.last{color:#fff;background:#70BAFF;border-radius:.2rem;}
+			td:nth-child(1),td:nth-child(7) {color:#FEAF3F;}
+			
+		}
+	}
+	dd{
+		width:100%;
+		a{display:inline-block;width:14%;border:1px solid #000;text-align:center;}
+		em{padding:1rem 0;display:inline-block;border:1px solid #f00;}
+		em.on{background:#70BAFF;}
+	}
+}
