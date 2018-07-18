@@ -57,7 +57,7 @@
 	export default{
 		data(){
 			return{
-				hide:false,
+				hide:true,
 				anihide:false,
 				anishow:false,
 				title:'选择时间',
