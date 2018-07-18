@@ -3,10 +3,10 @@
 			<div class="header">
 			<div class="backBtn">返回</div>
 			<h1 class="headTitle">提现列表</h1>
-			<div class="main"><img src="../assets/images/date.png" /></div>
+			<div class="main"></div>
 		</div>
 		<section class="pageCont putCash">
-				<h1 class="selDate" id="sel" @click="selDate"><em class="sdate">2018-04-21</em>至<em class="edate">2018-04-27</em></h1>
+				<h1 class="selDate" id="sel" @click="selDate"><em class="sdate">{{startTime}}</em>至<em class="edate">{{endTime}}</em></h1>
 				<div  class="list wrapper" ref="wrapper">
 					<ul class="orderInfo content" id="thelist" >
 						<li  v-for="(item,index) in data">
@@ -24,7 +24,7 @@
 					</div>-->
 			   </div>
 		</section>
-		<canlander ref="date"></canlander>
+		<canlander ref="date"  @start="onstart"  @end="onend"></canlander>
 	</div>
 </template>
 <script>
@@ -33,11 +33,16 @@ import canlander from '../public/date';
 export default{
 	data(){
 		return{
-			data:[]
+			data:[],
+			startTime:new Date().getFullYear(),
+			endTime:new Date().getFullYear()
 		}
 	},
 	components:{
 		canlander
+	},
+	beforeCreate(){
+		document.getElementsByTagName("body")[0].className="hidden";
 	},
 	created(){
 		var url = '../static/data.json'
@@ -49,15 +54,24 @@ export default{
 				})
 			})
 		})
-
 	},
 	methods:{
 		selDate(){
 			let obj = this.$children[0];
+			console.log(obj)
 			obj.anihide=false;
 			obj.anishow=true;
 			obj.hide=false;
+		},
+		onstart(value){
+			this.startTime=value
+		},
+		onend(value){
+			this.endTime=value
 		}
+	},
+	beforeDestroy(){
+		document.body.removeAttribute("class","hidden");
 	}
 }
 </script>
