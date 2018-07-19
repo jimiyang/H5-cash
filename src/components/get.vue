@@ -32,11 +32,6 @@
 				<p class="notice">温馨提示：发起提现申请成功后2小时内到账</p>
 			</div>
 			<a href="javascript:" class="button mt30" id="submit" @click="submit">确认提现</a>
-			<!--<div class="layer"></div>
-			<div id="layerMsg" class="layerMsg" style="display: none;"><div class="msgBox">
-				<p class="border">地方大地方大司法所大发送到发生范德地方大司法所大发送到发生范德地方大司法所大发送到发生范德司法所大发送到发生范德</p>
-				<a href="javascript:">确定</a>
-			</div></div>-->
 		</section>
 		<layer :message="message"></layer>
 	</div>
@@ -96,7 +91,7 @@ export default{
 				this.$children[0].hide = false;
 				return false;
 			}
-			this.$router.push({"path":"Success",query:{num:this.$refs.ipt.value,endNo:this.endNo}});
+			this.$router.push({"path":"Success",query:{cardNo:this.cardNo,num:this.$refs.ipt.value,endNo:this.endNo},abstract:true});
 		}
 	}
 }
