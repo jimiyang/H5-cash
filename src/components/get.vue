@@ -64,9 +64,6 @@ export default{
 		})		
 	},
 	methods:{
-		validate:function(){
-			
-		},
 		all(){
 			if(this.sum==0 || this.sum==0.00){
 				this.message ="您的提现余额为0元";

@@ -15,7 +15,7 @@
 				<li class="border">提现时间<em>{{time}}</em></li>
 				<li class="border">提现到账银行卡号<em>尾号{{this.endNo}}</em></li>
 			</ul>
-			<router-link to="/Get"  class="button mt30">完成</router-link>
+			<router-link to="/List"  class="button mt30">完成</router-link>
 		</section>
 	</div>
 </template>
@@ -30,7 +30,8 @@ export default{
 		}
 	},
 	created:function(){
-		this.time = this.$store.state.date(new Date())
+		this.time = this.$store.state.date(new Date());
+		this.$store.commit("cremt");
 	}
 }
 </script>

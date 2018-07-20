@@ -11,6 +11,9 @@
 				<h1 class="message">账户余额</h1>
 				<p>￥{{price}}</p>
 			</div>
+			<ul class="add">
+				<li><router-link to="/Reg">注册</router-link></li>
+			</ul>
 			<a href="javascript:" class="button mt30" @click="get">提现</a>
 		</section>
 		<layer :message="message"></layer>

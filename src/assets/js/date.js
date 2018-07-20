@@ -1,6 +1,8 @@
 ﻿class Dates{
 	constructor(){}
-	arrday=[31,28,31,30,31,30,31,31,30,31,30,31]
+	arrday(){
+		return [31,28,31,30,31,30,31,31,30,31,30,31]
+	}
 	init(){
 		let mon = new Date().getMonth(),k=0,arr=[],year="",month="",str;	
 		for(let i=mon-3;i<mon+3;i++){
@@ -17,20 +19,20 @@
 		let newD=new Date(yy,mm-1,1);
 		let firstday=newD.getDay();
 		firstday=firstday==0 ? 6 : firstday-1;
-		let prevday=mm>0?this.arrday[mm-1]:31;
+		let prevday=mm>0?this.arrday()[mm-1]:31;
 		let daylist=[],count=0,mydate;
 		for(let x=1;x<firstday+2;x++){
 			daylist.push(`{"day":null,"time":null}`);
 			count++;
 		}
-		for(let i=1;i<=this.arrday[mm-1];i++){
+		for(let i=1;i<=this.arrday()[mm-1];i++){
 			let day = i < 10 ?  "0"+i : i; 
 			let isGreen = false;
 			daylist.push(`{"day":${i},"time":"${yy}-${mm <10 ? "0"+mm : mm}-${i}"}`);
 			count++;
 		}
 		let sum=count>35 ? 42 : 35 ;
-		for(let j=0;j<sum-firstday-this.arrday[mm-1]-1;j++){
+		for(let j=0;j<sum-firstday-this.arrday()[mm-1]-1;j++){
 			daylist.push(`{"day":null,"time":null}`);
 		}
 		return daylist;

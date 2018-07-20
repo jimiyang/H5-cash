@@ -7,6 +7,7 @@ import Success from '@/components/success'
 import Error from '@/components/error'
 import Wait from '@/components/wait'
 import List from '@/components/list'
+import Reg from  '@/components/reg'
 Vue.use(Router)
 export default new Router({
 	mode:'history',
@@ -21,7 +22,7 @@ export default new Router({
 		  name:'center',
 		  component:center,
 		  children:[
-			  {//提现页面
+			  {
 				  path:'get',
 				  name:'Get',
 				  component:Get
@@ -45,6 +46,11 @@ export default new Router({
 				  path:'list',
 				  name:'List',
 				  component:List
+			  },
+			  {
+				  path:'reg',
+				  name:'reg',
+				  component:Reg
 			  }
 		  ]
 		}

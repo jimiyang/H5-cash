@@ -9,7 +9,6 @@ import store from  './router/store.js'
 require('!style-loader!css-loader!less-loader!./assets/less/style.less') //引入公用样式less/sass/scss 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios 
-Vue.use(Vuex)
 new Vue({
   el: '#app',
   router,

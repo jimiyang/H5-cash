@@ -58,7 +58,6 @@ export default{
 	methods:{
 		selDate(){
 			let obj = this.$children[0];
-			console.log(obj)
 			obj.anihide=false;
 			obj.anishow=true;
 			obj.hide=false;
