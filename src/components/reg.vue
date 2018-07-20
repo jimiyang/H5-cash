@@ -3,11 +3,11 @@
 		<ul>
 			<li>
 				<label>姓名：</label>
-				<input type="text" class="ipttxt"  v-model="username" placeholder="请输入姓名"/>
+				<input type="text" class="ipttxt"  v-model="form.username" placeholder="请输入姓名"/>
 			</li>
 			<li>
 				<label>密码：</label>
-				<input type="password"  class="ipttxt"  placeholder="请输入密码"/>
+				<input type="password"  class="ipttxt" v-model="form.pwd" placeholder="请输入密码"/>
 			</li>
 			<li>
 				<label>确认密码：</label>
@@ -38,34 +38,33 @@
 	export default{
 		data(){
 			return{
-				validate:new Validate,
-				value:"",
+				validate:new Validate(),
 				pwd:'',
-				hide:true,
+				hide:false,
 				errorMsg:'',
-				username:''
+				form:{
+					username:'',
+					pwd:''
+				}
+				
 			}
 		},
 		component:[layer],
 		created(){
 			vm = this;
-			//this.debouncedGetAnswer = lodash.debounce(this.name,3000)
 		},
 		watch:{
-			'username':'name',
+			'form.username':'name',
+			'form.pwd':'password',
 			deep:true
 		},
 		methods:{
 			name:lodash.debounce(function(){
-				let obj = {regexp: /^[A-Za-z0-9_\u4E00-\u9FA5]+$/,msg:"仅支持中文、英文和数字"};
-				if(!obj.regexp.test(this.username)){
-					vm.errorMsg = obj.msg;
-					vm.hide=false;
-				}else{
-					vm.errorMsg = "输入正确";
-					vm.hide=false;
-				}
-			},3000,"loading")
+				vm.errorMsg = this.validate.sw("username",this.form.username);
+			},1000),
+			password:lodash.debounce(function(){
+				vm.errorMsg = this.validate.sw("pwd",this.form.pwd);
+			},1000)
 		}
 	}
 </script>
