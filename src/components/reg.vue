@@ -7,7 +7,7 @@
 			</li>
 			<li>
 				<label>密码：</label>
-				<input type="password" v-pwd="pwd" class="ipttxt"  placeholder="请输入密码"/>
+				<input type="password"  class="ipttxt"  placeholder="请输入密码"/>
 			</li>
 			<li>
 				<label>确认密码：</label>
@@ -27,12 +27,13 @@
 			</li>
 		</ul>
 		<div class="error" :class="{hide:hide}">错误：{{errorMsg}}</div>
-		<a href="javascript:" class="button mt30" @click="submitEvent">注册会员</a>
+		<a href="javascript:" class="button mt30">注册会员</a>
 	</div>
 </template>
 <script>
 	import layer from '../public/layer.vue'
 	import {Validate} from  '../assets/js/validate.js'
+	let lodash = require('lodash')
 	let vm;
 	export default{
 		data(){
@@ -48,46 +49,23 @@
 		component:[layer],
 		created(){
 			vm = this;
-		},
-		directives:{
-			/*username:{
-				bind:function(el){
-					el.addEventListener("blur",function(e){
-						if(el.value=="" || el.value==null){
-							vm.errorMsg = "姓名不能为空";
-							vm.hide = false;
-						}else{
-							vm.hide = true;
-						}
-					})	
-				},
-				update:function(el, binding, vnode, oldVnode){
-					console.log(el.value);
-				}
-			},*/
-			pwd:{
-				bind:function(el){
-					//console.log(el.value)
-				}
-			}
+			//this.debouncedGetAnswer = lodash.debounce(this.name,3000)
 		},
 		watch:{
 			'username':'name',
 			deep:true
 		},
 		methods:{
-			name(value){
+			name:lodash.debounce(function(){
 				let obj = {regexp: /^[A-Za-z0-9_\u4E00-\u9FA5]+$/,msg:"仅支持中文、英文和数字"};
-				if(!obj.regexp.test(value)){
+				if(!obj.regexp.test(this.username)){
 					vm.errorMsg = obj.msg;
 					vm.hide=false;
 				}else{
-					vm.hide=true;
+					vm.errorMsg = "输入正确";
+					vm.hide=false;
 				}
-			},
-			submitEvent(){
-				
-			}
+			},3000,"loading")
 		}
 	}
 </script>
