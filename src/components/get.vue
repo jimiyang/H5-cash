@@ -7,8 +7,8 @@
 		<section class="pageCont putCash">
 			<div class="bankCard">
 				<div class="cardNo border">
-					<h1 class="bankname" id="bankname">{{bankName}}</h1>
-					<p>提现到账银行卡号<em>尾号{{endNo}}</em></p>
+					<h1 class="bankname" id="bankname">{{form.bankName}}</h1>
+					<p>提现到账银行卡号<em>尾号{{form.endNo}}</em></p>
 				</div>
 				<div class="price">
 					<h1 class="title">提现金额（元）</h1>
@@ -41,9 +41,12 @@ import layer from '../public/layer';
 export default{
 	data(){
 		return {
-			cardNo:'313223007007',
-			bankName:'',
-			endNo:'',
+			form:{
+				cardNo:'313223007007',
+				bankName:'',
+				endNo:'',
+				num:''
+			},
 			sum:'1',
 			message:''
 		}
@@ -53,10 +56,10 @@ export default{
 		const url = '../static/bankNormal.json';
 		this.$axios.get(url).then((rs) => { 
 			for(let i=0;i<rs.data.length;i++){
-				if(rs.data[i].code==this.cardNo){
-					this.bankName=rs.data[i].name;
+				if(rs.data[i].code==this.form.cardNo){
+					this.form.bankName=rs.data[i].name;
 					let str = String(rs.data[i].code);
-					this.endNo = str.substr(str.length-4,str.length);
+					this.form.endNo = str.substr(str.length-4,str.length);
 				}
 			}
 		}).catch(function(error){
@@ -88,7 +91,8 @@ export default{
 				this.$children[0].hide = false;
 				return false;
 			}
-			this.$router.push({"path":"Success",query:{cardNo:this.cardNo,num:this.$refs.ipt.value,endNo:this.endNo},abstract:true});
+			this.form.num=this.$refs.ipt.value;
+			this.$router.push({"path":"Success",query:this.form,abstract:true});
 		}
 	}
 }

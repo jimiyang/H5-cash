@@ -32,7 +32,7 @@ const state={
 }
 const mutations={
 	cremt(state){
-		console.log(state.count+1);
+		//console.log(state.count+1);
 	}
 }
 export default new Vuex.Store({

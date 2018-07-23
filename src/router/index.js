@@ -8,14 +8,15 @@ import Error from '@/components/error'
 import Wait from '@/components/wait'
 import List from '@/components/list'
 import Reg from  '@/components/reg'
+import Select from '@/public/select'
 Vue.use(Router)
 export default new Router({
 	mode:'history',
 	routes: [
 		{
 		  path: '/',
-		  name: 'Balance',
-		  component: Balance
+		  name: 'Select',
+		  component: Select
 		},
 		{
 		  path:'/',

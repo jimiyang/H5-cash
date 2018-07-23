@@ -11,7 +11,7 @@
 			</li>
 			<li>
 				<label>确认密码：</label>
-				<input type="text" class="ipttxt" placeholder="请确认密码"/>
+				<input type="text" class="ipttxt" v-model="form.spwd" placeholder="请确认密码"/>
 			</li>
 			<li>
 				<label>性别：</label>
@@ -19,21 +19,21 @@
 			</li>
 			<li>
 				<label>手机号码：</label>
-				<input type="text" class="ipttxt" placeholder="请输入手机号"/>
+				<input type="text" class="ipttxt" v-model="form.number" placeholder="请输入手机号"/>
 			</li>
 			<li>
 				<label>邮箱：</label>
-				<input type="text" class="ipttxt" placeholder="请输入邮箱"/>
+				<input type="text" class="ipttxt" v-model="form.email" placeholder="请输入邮箱"/>
 			</li>
 		</ul>
 		<div class="error" :class="{hide:hide}">错误：{{errorMsg}}</div>
-		<a href="javascript:" class="button mt30">注册会员</a>
+		<a href="javascript:" class="button mt30" @click="addVip">注册会员</a>
 	</div>
 </template>
 <script>
 	import layer from '../public/layer.vue'
 	import {Validate} from  '../assets/js/validate.js'
-	let lodash = require('lodash')
+	let lodash = require('lodash');
 	let vm;
 	export default{
 		data(){
@@ -44,7 +44,10 @@
 				errorMsg:'',
 				form:{
 					username:'',
-					pwd:''
+					pwd:'',
+					spwd:'',
+					number:'',
+					email:''
 				}
 				
 			}
@@ -56,6 +59,9 @@
 		watch:{
 			'form.username':'name',
 			'form.pwd':'password',
+			'form.spwd':'checkpwd',
+			'form.number':'telphone',
+			'form.email':'emailEvent',
 			deep:true
 		},
 		methods:{
@@ -64,7 +70,23 @@
 			},1000),
 			password:lodash.debounce(function(){
 				vm.errorMsg = this.validate.sw("pwd",this.form.pwd);
-			},1000)
+			},1000),
+			checkpwd:lodash.debounce(function(){
+				if(this.form.spwd!=this.form.pwd){
+					vm.errorMsg=this.validate.sw("spwd",this.form.spwd);
+				}
+			},1000),
+			telphone:lodash.debounce(function(){
+				vm.errorMsg=this.validate.sw("number",this.form.number);
+			},1000),
+			emailEvent:lodash.debounce(function(){
+				vm.errorMsg=this.validate.sw("email",this.form.email);
+			},1000),
+			addVip:function(){
+				this.$axios.get(url,{params:this.form}).then((rs)=>{
+					console.log(rs)
+				})
+			}
 		}
 	}
 </script>
