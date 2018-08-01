@@ -25,13 +25,19 @@
 				<label>邮箱：</label>
 				<input type="text" class="ipttxt" v-model="form.email" placeholder="请输入邮箱"/>
 			</li>
+			<li>
+				<label>地点：</label>
+				<span @click="selAddress">{{address}}</span>
+			</li>
 		</ul>
 		<div class="error" :class="{hide:hide}">错误：{{errorMsg}}</div>
 		<a href="javascript:" class="button mt30" @click="addVip">注册会员</a>
+		<selCity :hide.sync="hide"></selCity>
 	</div>
 </template>
 <script>
 	import layer from '../public/layer.vue'
+	import selCity from '../public/select.vue'
 	import {Validate} from  '../assets/js/validate.js'
 	let lodash = require('lodash');
 	let vm;
@@ -42,6 +48,8 @@
 				pwd:'',
 				hide:false,
 				errorMsg:'',
+				address:'请选择省市区',
+				hide:true,
 				form:{
 					username:'',
 					pwd:'',
@@ -52,7 +60,7 @@
 				
 			}
 		},
-		component:[layer],
+		components:{layer,selCity},
 		created(){
 			vm = this;
 		},
@@ -86,6 +94,9 @@
 				this.$axios.get(url,{params:this.form}).then((rs)=>{
 					console.log(rs)
 				})
+			},
+			selAddress(){
+				this.hide=false;
 			}
 		}
 	}

@@ -15,8 +15,8 @@ export default new Router({
 	routes: [
 		{
 		  path: '/',
-		  name: 'Select',
-		  component: Select
+		  name: 'Balance',
+		  component: Balance
 		},
 		{
 		  path:'/',

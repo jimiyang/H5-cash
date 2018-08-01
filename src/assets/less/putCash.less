@@ -1,12 +1,14 @@
 ﻿.bgwhite{background:#fff;}
 .wrapper{position:absolute;left:0;right:0;top:4.5rem;overflow:auto;padding-bottom:50px;height: calc(100% - 100px);}//height: calc(100% - 44px)-45减去头部高度
 .datelist{position:absolute;left:0;right:0;overflow:auto;padding-bottom:80px;height: calc(100% - 230px);}
+.citynameList{position:absolute;top:6.5rem;left:0;right:0;overflow-x:hidden;height:8rem;}
 .error{line-height:2rem;padding:1rem;font-size:1.4rem;color:#f00;}
 .regList{
 	background:#fff;
 	li{padding:1rem 1rem 0 1rem;color:#5A616A;position:relative;
 		label{display:inline-block;width:6rem;}
-		.ipttxt{height:3rem;line-height:3rem;width:70%;border:0 none;}
+		.ipttxt{height:3rem;line-height:3rem;width:70%;border:0 none;text-align:right;}
+		span{width:70%;display:inline-block;height:3rem;line-height:3rem;text-align:right;}
 		&:before{content:"";pointer-events:none;position:absolute;width:200%;height:200%;left: 0;top:0;border-bottom:1px solid #f3f3f3;-webkit-transform:(scale(0.5));-webkit-transform-origin:0 0;transform:(scale(0.5));transform-origin: 0 0;}
 		&:after{width:.8rem;height:.8rem;display:block;border:1px solid #787D85;-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);-o-transform:rotate(45deg);transform:rotate(45deg);content:'';border-left:none;border-bottom:none;position:absolute;right:1rem;top:50%;}
 	}

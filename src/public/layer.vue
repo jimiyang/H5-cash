@@ -1,26 +1,30 @@
 ﻿<template>
-		<div id="layerMsg" class="layerMsg " :class="{hide:hide}">
+		<div id="layerMsg" class="layerMsg" :class="{hide:isHide}">
 			<div class="layer"></div>
 			<div class="msgBox">
 				<p class="border">{{message}}</p>
-				<a href="javascript:" id="closeMsg" @click="close">确定</a>
+				<a href="javascript:" id="closeMsg" @click.stop="close">确定</a>
 			</div>
 		</div>
 </template>
 <script>
+	let status;
 	export default{
-		data:function(){
+		props:['message','hide'],
+		data(){
 			return{
-				isHide:false,
-				hide:true
+				isHide:true
 			}
 		},
-		props:['message'],
 		methods:{
 			close(){
-				this.hide=true;
+				this.$emit('update:hide',true);
 			} 
+		},
+		watch:{
+			hide(val){
+				this.isHide = val;
+			}
 		}
-		
 	}
 </script>

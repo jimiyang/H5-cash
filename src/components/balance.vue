@@ -16,17 +16,17 @@
 			</ul>
 			<a href="javascript:" class="button mt30" @click="get">提现</a>
 		</section>
-		<layer :message="message"></layer>
+		<layer :message="message" :hide.sync="hide"></layer>
 	</div>
 </template>
 <script>
 import layer from '../public/layer';
-import sum from '../data/price.json';
 export default {
   data(){
     return {
-		price:sum[0].count,
-		message:'请求链接已过时...'
+		price:1050.2,
+		message:'请求链接已过时...',
+		hide:true
     }
   },
   components:{layer},
@@ -34,7 +34,7 @@ export default {
 	get(){
 		if(this.price == 0){
 			this.message ="您的提现余额为0元";
-			this.$children[0].hide = false;
+			this.hide=false;
 		}else{
 			this.$router.push({"path":"Get"});
 		}

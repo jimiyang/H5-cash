@@ -33,7 +33,7 @@
 			</div>
 			<a href="javascript:" class="button mt30" id="submit" @click="submit">确认提现</a>
 		</section>
-		<layer :message="message"></layer>
+		<layer :message="message" :hide.sync="hide"></layer>
 	</div>
 </template>
 <script>
@@ -48,7 +48,8 @@ export default{
 				num:''
 			},
 			sum:'1',
-			message:''
+			message:'',
+			hide:true
 		}
 	},
 	components:{layer},
@@ -70,17 +71,17 @@ export default{
 		all(){
 			if(this.sum==0 || this.sum==0.00){
 				this.message ="您的提现余额为0元";
-				this.$children[0].hide = false;
+				this.hide = false;
 				return false;
 			}
 			if(this.$refs.ipt.value>this.sum){
 				this.message ="您的提现金额已不足";
-				this.$children[0].hide = false;
+				this.hide = false;
 				return false;
 			}
 			if(this.$refs.ipt.value < 0){
 				this.message ="请您输入正确的提现金额";
-				this.$children[0].hide = false;
+				this.hide = false;
 				return false;
 			}
 			this.$refs.ipt.value=this.sum;
@@ -88,7 +89,7 @@ export default{
 		submit(){
 			if(this.$refs.ipt.value==0 || this.$refs.ipt.value==0.00){
 				this.message ="请输入提现金额";
-				this.$children[0].hide = false;
+				this.hide = false;
 				return false;
 			}
 			this.form.num=this.$refs.ipt.value;

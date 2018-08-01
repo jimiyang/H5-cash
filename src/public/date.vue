@@ -1,5 +1,5 @@
 ﻿<template>
-	<div class="dateArea" :class="{hide:hide,anihide:anihide,anishow:anishow}">
+	<div class="dateArea" :class="{hide:isHide,anihide:isAnihide,anishow:isAnishow}">
 			<div class="head">
 				<div class="backBtn goback">返回</div>
 				<h1 class="headTitle">{{title}}</h1>
@@ -55,11 +55,12 @@
 	import Bscroll from 'better-scroll';
 	import {Dates} from '../assets/js/date'
 	export default{
+		props:['hide','anihide','anishow'],
 		data(){
 			return{
-				hide:true,
-				anihide:false,
-				anishow:false,
+				isHide:true,
+				isAnihide:true,
+				isAnishow:false,
 				title:'选择时间',
 				node:[],
 				tdlist:[],
@@ -75,31 +76,39 @@
 				height:''
 			}
 		},
+		watch:{
+			hide(val){
+				this.isHide=val;
+			},
+			anihide(val){
+				this.isAnihide=val;
+			},
+			anishow(value){
+				this.isAnishow=value;
+			}
+		},
 		beforeCreate(){
 			document.getElementsByTagName("body")[0].className="hidden";
 		},
 		created(){
 			this.node = this.obj.init();
 			this.$nextTick(() => {
-				//this.height=(document.getElementsByClassName('month')[0].offsetHeight)*3-80
 				this.scroll = new Bscroll(this.$refs.datelist,{
 					momentum:true,
 					click:true,
 					taps: true,
-					//startY:`-${this.height}`
 				})
-				//this.scroll.refresh();
 			})
 		},
 		methods:{
 			save(){
-				this.anihide = true;
-				this.anishow = false;
+				this.$emit("update:anihide",true);
+				this.$emit("update:anishow",false);
 				vm =this;
 				vm.$emit("start",`${this.startYear}-${this.startMon}-${this.startDay}`)
 				vm.$emit("end",`${this.endYear}-${this.endMon}-${this.endDay}`)
 				setTimeout(function(){
-					vm.hide=true;
+					vm.$emit("update:hide",true);
 				},500)
 			},
 			seltime(e){

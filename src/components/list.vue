@@ -6,25 +6,25 @@
 			<div class="main"></div>
 		</div>
 		<section class="pageCont putCash">
-				<h1 class="selDate" id="sel" @click="selDate"><em class="sdate">{{startTime}}</em>至<em class="edate">{{endTime}}</em></h1>
-				<div  class="list wrapper" ref="wrapper">
-					<ul class="orderInfo content" id="thelist" >
-						<li  v-for="(item,index) in data">
-						   <h1 class="time">提现时间 {{item.time}}</label>
-						   <em>{{item.price}}</em></h1>
-						   <h2 class="orderNo">提现订单号{{item.cardNO}}
-								<label class="state wait" v-if="item.status=='01'">处理中</label>
-								<label class="state right" v-else-if="item.status=='02'">成功</label>
-								<label class="state wrong" v-else="item.status=='03'">失败</label>
-						   </h2>
-						</li>
-					</ul>
-					<!--<div id="pullUp">
-						<span class="pullUpLabel"><img src="http://static.liantuobank.com/cash/images/loading.gif" /></span>
-					</div>-->
-			   </div>
+			<h1 class="selDate" id="sel" @click="selDate"><em class="sdate">{{startTime}}</em>至<em class="edate">{{endTime}}</em></h1>
+			<div  class="list wrapper" ref="wrapper">
+				<ul class="orderInfo content" id="thelist" >
+					<li  v-for="(item,index) in data">
+					   <h1 class="time">提现时间 {{item.time}}</label>
+					   <em>{{item.price}}</em></h1>
+					   <h2 class="orderNo">提现订单号{{item.cardNO}}
+							<label class="state wait" v-if="item.status=='01'">处理中</label>
+							<label class="state right" v-else-if="item.status=='02'">成功</label>
+							<label class="state wrong" v-else="item.status=='03'">失败</label>
+					   </h2>
+					</li>
+				</ul>
+				<!--<div id="pullUp">
+					<span class="pullUpLabel"><img src="http://static.liantuobank.com/cash/images/loading.gif" /></span>
+				</div>-->
+		   </div>
 		</section>
-		<canlander ref="date"  @start="onstart"  @end="onend"></canlander>
+		<canlander ref="date" :hide.sync="hide" :anihide.sync="anihide" :anishow.sync="anishow" @start="onstart"  @end="onend"></canlander>
 	</div>
 </template>
 <script>
@@ -35,7 +35,10 @@ export default{
 		return{
 			data:[],
 			startTime:new Date().getFullYear(),
-			endTime:new Date().getFullYear()
+			endTime:new Date().getFullYear(),
+			hide:true,
+			anihide:true,
+			anishow:false,
 		}
 	},
 	components:{
@@ -50,23 +53,26 @@ export default{
 			this.data = rs.data;
 			this.$nextTick(() => {
 				this.scroll = new Bscroll(this.$refs.wrapper,{
-					momentum:true
+					momentum:true,
+					click:true,
+					taps: true
 				})
 			})
 		})
 	},
 	methods:{
 		selDate(){
-			let obj = this.$children[0];
-			obj.anihide=false;
-			obj.anishow=true;
-			obj.hide=false;
+			
+			this.anihide=false;
+			this.hide=false;
+			this.anishow=true;
+			
 		},
 		onstart(value){
-			this.startTime=value
+			this.startTime=value;
 		},
 		onend(value){
-			this.endTime=value
+			this.endTime=value;
 		}
 	},
 	beforeDestroy(){
