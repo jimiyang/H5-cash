@@ -32,7 +32,7 @@
 		</ul>
 		<div class="error" :class="{hide:hide}">错误：{{errorMsg}}</div>
 		<a href="javascript:" class="button mt30" @click="addVip">注册会员</a>
-		<selCity :hide.sync="hide"></selCity>
+		<selCity :hide.sync="hide" @area="area"></selCity>
 	</div>
 </template>
 <script>
@@ -57,7 +57,6 @@
 					number:'',
 					email:''
 				}
-				
 			}
 		},
 		components:{layer,selCity},
@@ -73,6 +72,10 @@
 			deep:true
 		},
 		methods:{
+			area(val){
+				this.address=val;
+				this.hide=true;
+			},
 			name:lodash.debounce(function(){
 				vm.errorMsg = this.validate.sw("username",this.form.username);
 			},1000),

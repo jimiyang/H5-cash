@@ -35,7 +35,7 @@
 		watch:{
 			hide(val){
 				this.isHide=val;
-				console.log(this.isHide)
+				this.proviceArr=this.Data[0].provice
 			}
 		},
 		created(){
@@ -57,7 +57,7 @@
 		},
 		methods:{
 			close(){
-				this.hide=true;
+				this.$emit("update:hide",true);
 			},
 			selCity(item){	
 				this.proviceArr=[];
@@ -79,6 +79,7 @@
 				}
 				if(item.c_id!=undefined){
 					this.defaultArea =item.name;
+					this.$emit("area",`${this.defaultProvice}-${this.defaultCity}-${this.defaultArea}`);
 				}
 			}
 		}
