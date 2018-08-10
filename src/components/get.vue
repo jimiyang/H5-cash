@@ -55,7 +55,7 @@ export default{
 	components:{layer},
 	created:function(){
 		const url = '../static/bankNormal.json';
-		this.$axios.get(url).then((rs) => { 
+		this.$axios.get(url).then((rs) => {
 			for(let i=0;i<rs.data.length;i++){
 				if(rs.data[i].code==this.form.cardNo){
 					this.form.bankName=rs.data[i].name;
@@ -65,7 +65,7 @@ export default{
 			}
 		}).catch(function(error){
 			console.log(error)
-		})		
+		})
 	},
 	methods:{
 		all(){
@@ -89,6 +89,11 @@ export default{
 		submit(){
 			if(this.$refs.ipt.value==0 || this.$refs.ipt.value==0.00){
 				this.message ="请输入提现金额";
+				this.hide = false;
+				return false;
+			}
+			if(this.$refs.ipt.value>this.sum){
+				this.message ="您的提现金额已不足";
 				this.hide = false;
 				return false;
 			}
