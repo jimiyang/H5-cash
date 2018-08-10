@@ -12,7 +12,7 @@
 				<p>￥{{price}}</p>
 			</div>
 			<ul class="add">
-				<li><router-link to="/Reg">注册</router-link></li>
+				<li><router-link to="/Reg">注册会员</router-link></li>
 			</ul>
 			<a href="javascript:" class="button mt30" @click="get">提现</a>
 		</section>
