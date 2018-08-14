@@ -10,6 +10,7 @@ import List from '@/components/list'
 import Reg from  '@/components/reg'
 import Select from '@/public/select'
 Vue.use(Router)
+//观察者模式
 export default new Router({
 	mode:'history',
 	routes: [

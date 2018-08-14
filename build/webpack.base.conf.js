@@ -33,7 +33,7 @@ module.exports = {
   }*/
   output:{
      path:path.resolve(__dirname,'./dist'),
-     publicPath:'/Hakkacash/dist',
+     publicPath:'/',
      filename:'build.js'
   },
   resolve: {
