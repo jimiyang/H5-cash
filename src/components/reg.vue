@@ -30,6 +30,7 @@
 				<span @click="selAddress">{{address}}</span>
 			</li>
 		</ul>
+		<div>{{message}}</div>
 		<div class="error" :class="{hide:hide}">错误：{{errorMsg}}</div>
 		<a href="javascript:" class="button mt30" @click="addVip">注册会员</a>
 		<selCity :hide.sync="hide" @area="area"></selCity>
@@ -39,6 +40,8 @@
 	import layer from '../public/layer.vue'
 	import selCity from '../public/select.vue'
 	import {Validate} from  '../assets/js/validate.js'
+	import {Child} from '../assets/ts/geeter.js'
+	console.log(Child)
 	let lodash = require('lodash');
 	let vm;
 	export default{
@@ -56,12 +59,16 @@
 					spwd:'',
 					number:'',
 					email:''
-				}
+				},
+				message:''
 			}
 		},
 		components:{layer,selCity},
 		created(){
 			vm = this;
+			//var parent = new Parent("已审核");
+			//var child=new Child(this.form.username);
+		//	this.message = child.getinfo()
 		},
 		watch:{
 			'form.username':'name',
