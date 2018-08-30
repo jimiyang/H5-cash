@@ -3,7 +3,7 @@
 		<ul>
 			<li>
 				<label>姓名：</label>
-				<input type="text" class="ipttxt"  v-model="form.username" placeholder="请输入姓名"/>
+				<input type="text" class="ipttxt" ref="ipt"  v-model="form.username" placeholder="请输入姓名"/>
 			</li>
 			<li>
 				<label>密码：</label>
@@ -29,6 +29,10 @@
 				<label>地点：</label>
 				<span @click="selAddress">{{address}}</span>
 			</li>
+			<li>
+				<label>版本：</label>
+				<span>{{form.version}}</span>
+			</li>
 		</ul>
 		<div class="error" :class="{hide:hide}">错误：{{errorMsg}}</div>
 		<a href="javascript:" class="button mt30" @click="addVip">注册会员</a>
@@ -41,6 +45,7 @@
 	import {Validate} from  '../assets/js/validate.js'
 	let lodash = require('lodash');
 	let vm;
+	import {mapState,mapMutations} from 'vuex'
 	export default{
 		data(){
 			return{
@@ -55,13 +60,16 @@
 					pwd:'',
 					spwd:'',
 					number:'',
-					email:''
+					email:'',
+					version:''
 				}
 			}
 		},
 		components:{layer,selCity},
 		created(){
 			vm = this;
+			//this.$store.commit("updateVersion","");
+			//this.form.version = this.$store.state.ver;
 		},
 		watch:{
 			'form.username':'name',
@@ -71,7 +79,22 @@
 			'form.email':'emailEvent',
 			deep:true
 		},
+		computed:{
+			count(){
+				return this.$store.state.ver 
+			}
+		},
 		methods:{
+			...mapMutations(["updateVersion","cremt"]),
+			addVip:function(){
+				//this.$axios.get(url,{params:this.form}).then((rs)=>{
+					//console.log(rs)
+				//})
+				this.updateVersion(this.$refs.ipt.value);
+				console.log(this.$store.state.ver)
+				this.cremt(this.$refs.ipt.value);
+				console.log(this.$store.state.count)
+			},
 			area(val){
 				this.address=val;
 				this.hide=true;
@@ -93,11 +116,6 @@
 			emailEvent:lodash.debounce(function(){
 				vm.errorMsg=this.validate.sw("email",this.form.email);
 			},1000),
-			addVip:function(){
-				this.$axios.get(url,{params:this.form}).then((rs)=>{
-					console.log(rs)
-				})
-			},
 			selAddress(){
 				this.hide=false;
 			}

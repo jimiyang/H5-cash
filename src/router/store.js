@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 const state={
 	count:0,
+	ver:1,
 	date:function(time){
 		let date = new Date(time);  
 		let y = date.getFullYear();    
@@ -18,7 +19,7 @@ const state={
 		second = second < 10 ? ('0' + second) : second;   
 		return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;    
 	},
-	lock:function(obj){ //防止重复提交
+	lock:function(obj){
 		//if(time==undefined){time=3000}
 		let nowTime = new Date().getTime();
 		let clickTime = obj.attr("ctime");
@@ -31,8 +32,11 @@ const state={
 	}
 }
 const mutations={
-	cremt(state){
-		//console.log(state.count+1);
+	cremt(state,n){
+		state.count=state.count + n;
+	},
+	updateVersion(state,v){
+		state.ver = v;
 	}
 }
 export default new Vuex.Store({
