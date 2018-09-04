@@ -53,7 +53,7 @@
 				pwd:'',
 				hide:false,
 				errorMsg:'',
-				address:'请选择省市区',
+				address:'请选择',
 				hide:true,
 				form:{
 					username:'',
@@ -68,8 +68,8 @@
 		components:{layer,selCity},
 		created(){
 			vm = this;
-			//this.$store.commit("updateVersion","");
-			//this.form.version = this.$store.state.ver;
+			this.updateVersion("一般版");
+			this.form.version = this.$store.state.ver;
 		},
 		watch:{
 			'form.username':'name',
@@ -85,7 +85,10 @@
 			}
 		},
 		methods:{
-			...mapMutations(["updateVersion","cremt"]),
+			...mapMutations([
+				"updateVersion",
+				"cremt"
+			]),
 			addVip:function(){
 				//this.$axios.get(url,{params:this.form}).then((rs)=>{
 					//console.log(rs)

@@ -12,7 +12,7 @@
 				<p>￥{{price}}</p>
 			</div>
 			<ul class="add">
-				<li><router-link to="/Reg">注册会员</router-link></li>
+				<li><router-link to="/Reg">注册会员({{$store.state.ver}})</router-link></li>
 			</ul>
 			<a href="javascript:" class="button mt30" @click="get">提现</a>
 		</section>
@@ -20,17 +20,26 @@
 	</div>
 </template>
 <script>
-import layer from '../public/layer';
+import layer from '../public/layer'
+import {mapMutations} from 'vuex'
 export default {
   data(){
     return {
 		price:1050.2,
 		message:'请求链接已过时...',
-		hide:true
+		hide:true,
+		version:''
     }
   },
   components:{layer},
+  created(){
+		this.updateVersion("银行版")
+		
+  },
   methods:{
+    ...mapMutations([
+		"updateVersion"
+	]),
 	get(){
 		if(this.price == 0){
 			this.message ="您的提现余额为0元";
