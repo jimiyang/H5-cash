@@ -10,6 +10,7 @@ import List from '@/components/list'
 import Reg from  '@/components/reg'
 import Select from '@/public/select'
 import Index from  '@/index/index'
+import Temp from '@/components/template'
 Vue.use(Router)
 //观察者模式
 export default new Router({
@@ -17,8 +18,8 @@ export default new Router({
 	routes: [
 		{
 			path:'/',
-			name:'Index',
-			component:Index
+			name:'Temp',
+			component:Temp
 		},
 		{
 		  path: '/',

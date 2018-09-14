@@ -107,13 +107,10 @@
 		},
 		methods:{
 			search(){
-				console.log(api)
 				this.ishide = false;
 				let mvalue = this.$refs.searchContent.value;
-				let url = '../static/getMerchantsFuzzy.json';
-				api.addForm({merchantsName:mvalue}).
-				then(rs=>{
-					this.node = rs.data;
+				api.addForm({mvalue:mvalue}).then(rs=>{
+					this.node = rs;
 				})
 			},
 			select(item){

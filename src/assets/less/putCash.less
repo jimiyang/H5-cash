@@ -3,6 +3,31 @@
 .datelist{position:absolute;left:0;right:0;overflow:auto;padding-bottom:80px;height: calc(100% - 230px);}
 .citynameList{position:absolute;top:6.5rem;left:0;right:0;overflow-x:hidden;height:8rem;}
 .error{line-height:2rem;padding:1rem;font-size:1.4rem;color:#f00;}
+.clearfix:after {content:"."; display:block; height:0; visibility:hidden; clear:both; }
+.clearfix { *zoom:1; }
+.template{
+	width:1000px;margin:30px auto;border:1px solid #ccc;
+	.title{padding:15px;border-bottom:1px solid #ccc;}
+	.section{padding-left:15px;}
+	.left{float:left;width:600px;height:400px;border-right:1px solid #ccc;
+		li{margin:15px 0;}
+	}
+	.right{float:right;width:300px;margin-top:15px;
+		input{cursor:pointer;margin:10px 0;border:1px solid #ccc;width:100px;display:block;padding:10px 30px;background:#f3f3f3;border-radius:5px;}
+	}
+	.ipt{margin:15px 0;display:block;border:1px solid #ccc;height:32px;line-height:32px;width:200px;cursor:pointer;}
+	.txtarea{width:400px;height:50px;}
+	.select{width:200px;height:30px;display:block;}
+	.radio-box,.chk-box{
+		input{vertical-align:middle;margin-right:10px;}
+	}
+	.footer{
+		padding:10px;border-top:1px solid #ccc;
+		a{color:#333;margin-right:20px;display: inline-block;padding:5px 20px;}
+		a.active{background:#fd7405;color:#fff;}
+	}
+}
+
 .regList{
 	background:#fff;
 	li{padding:1rem 1rem 0 1rem;color:#5A616A;position:relative;
