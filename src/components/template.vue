@@ -1,15 +1,15 @@
 <template>
 	<div class="template">
 		<div class="title">
-			<a href="">字体</a>
-			<a href="">字号</a>
+			<a href="javascript:">{字体}</a>
+			<a href="javascript:" class="font" @click="font">{字号}</a>
 		</div>
 		<div class="section clearfix">
-			<div class="left" :class="{hide:ishide==false}">	
-				<div :is="item.component"  v-for="item in items"></div>
+			<div class="left" ref="view"  :style="{fontSize:fontSize+ 'px'}" :class="[{hide:ishide==false},fon]">	
+				<div :style="{fontSize:fontSize+ 'px' }" :is="item.component"  v-for="item in items"></div>
 			</div>
-			<div class="left" ref="html" :class="{hide:ishide==true}">
-				fdsafdas
+			<div class="left" :class="{hide:ishide==true}">
+				{{content}}
 			</div>
 			<div class="right">
 				<input type="button" value="输入框" @click="txtEvent('a-text')"/>
@@ -23,6 +23,7 @@
 			<a href="javascript:" :class="{active:iscur==0}" @click="change(0)">视图</a>
 			<a href="javascript:" :class="{active:iscur==1}" @click="change(1)">代码</a>
 		</div>
+		<a-font :hide.sync="hide" @size="getSize"></a-font>
 	</div>
 </template>
 <script>
@@ -31,12 +32,17 @@
 	import checkbox from '../temp/checkbox.vue'
 	import radio from '../temp/radio.vue'
 	import select from '../temp/select.vue'
+	import font from '../temp/font.vue'
 	export default{
 		data(){
 			return{
 				items:[],
 				iscur:0,
-				ishide:true
+				ishide:true,
+				content:'',
+				hide:true,
+				fon:'',
+				fontSize:''
 			}
 		},
 		components:{
@@ -44,12 +50,17 @@
 			'a-area':area,
 			'a-checkbox':checkbox,
 			'a-radio':radio,
-			'a-select':select
+			'a-select':select,
+			'a-font':font
 		},
 		created(){
-			console.log(this.iscur)
+			//console.log(this.iscur)
 		},
 		methods:{
+			getSize(value){
+				this.fontSize=value;
+				console.log(this.fontSize)
+			},
 			txtEvent(temp){
 				this.items.push({
 					'component': temp
@@ -58,12 +69,17 @@
 			change(index){
 				this.iscur = index;
 				if(index==1){
-					this.ishide=false;
-					this.$refs.html.innerText="";
-					this.$refs.html.innerText = document.body.innerHTML;
+					this.ishide = false;
+					this.content = "";
+					if(this.$refs.view.innerHTML!=""){
+						this.content = this.$refs.view.innerHTML;
+					}
 				}else{
 					this.ishide=true;
 				}
+			},
+			font(){
+				this.hide=false;
 			}
 		}
 	}

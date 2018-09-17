@@ -5,9 +5,16 @@
 .error{line-height:2rem;padding:1rem;font-size:1.4rem;color:#f00;}
 .clearfix:after {content:"."; display:block; height:0; visibility:hidden; clear:both; }
 .clearfix { *zoom:1; }
+
 .template{
 	width:1000px;margin:30px auto;border:1px solid #ccc;
-	.title{padding:15px;border-bottom:1px solid #ccc;}
+	.f-14{font-size:14px;}
+	.f-16{font-size:16px;}
+	.f-18{font-size:18px;}
+	.f-20{font-size:20px;}
+	.title{padding:15px;border-bottom:1px solid #ccc;
+		a{font-size:14px;color:#5A616A;}
+	}
 	.section{padding-left:15px;}
 	.left{float:left;width:600px;height:400px;border-right:1px solid #ccc;
 		li{margin:15px 0;}
@@ -27,7 +34,17 @@
 		a.active{background:#fd7405;color:#fff;}
 	}
 }
+.font-box{
+	width:500px;line-height:2.5;border:1px solid #000;position: fixed;
+    left:50%;top:50%;margin-top:-116px;margin-left:-250px;background:#fff;
+	h1{border-bottom:1px dashed #ccc;padding-left:10px;font-size:14px;}
+	label{display:inline-block;cursor:pointer;margin:0 10px;padding:2px 10px;border-radius:5px;line-height:1.5;}
+	label.seled{background:#fd7405;color:#fff;}
+	.btn-box{padding:10px;text-align:center;display:block;border-top:1px dashed #ccc;
+		a{margin-right:10px;display:inline-block;padding:5px 25px;line-height:1.5;border:1px solid #f3f3f3;border-radius:5px;}
+	}
 
+}
 .regList{
 	background:#fff;
 	li{padding:1rem 1rem 0 1rem;color:#5A616A;position:relative;
