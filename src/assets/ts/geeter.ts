@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-﻿class Parent{
+class Parent{
 	constructor(type){
 		this.type=type;
 	}
@@ -17,8 +16,10 @@ class Child extends Parent{
 	}
 }
 export {Child}
-=======
-class Parent{
+
+
+
+/*class Parent{
     constructor (type){
       this.type=type;
     }
@@ -37,5 +38,4 @@ class Child extends Parent{
 }
 new Parent("已审核");
 new Child("管理员")
-export {Child}
->>>>>>> 3eb04128051396c0e639ce669526acd73e44aae1
+export {Child}*/

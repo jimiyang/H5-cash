@@ -1,8 +1,7 @@
 <template>
 	<div class="template">
 		<div class="title">
-			<a href="javascript:">{字体}</a>
-			<a href="javascript:" class="font" @click="font">{字号}</a>
+			<a href="javascript:" class="font" @click="font"><字号></a>
 		</div>
 		<div class="section clearfix">
 			<div class="left" ref="view"  :style="{fontSize:fontSize+ 'px'}" :class="[{hide:ishide==false},fon]">	

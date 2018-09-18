@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -15,22 +13,15 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
->>>>>>> 3eb04128051396c0e639ce669526acd73e44aae1
 var Parent = /** @class */ (function () {
     function Parent(type) {
         this.type = type;
     }
-<<<<<<< HEAD
     Parent.prototype.getType = function () {
-=======
-    Parent.prototype.gettype = function () {
->>>>>>> 3eb04128051396c0e639ce669526acd73e44aae1
         return this.type;
     };
     return Parent;
 }());
-<<<<<<< HEAD
-=======
 var Child = /** @class */ (function (_super) {
     __extends(Child, _super);
     function Child(type, username) {
@@ -38,12 +29,29 @@ var Child = /** @class */ (function (_super) {
         _this.username = username;
         return _this;
     }
-    Child.prototype.getinfo = function () {
-        return this.username + this.type;
+    Child.prototype.parent = function () {
+        return this.getType();
     };
     return Child;
 }(Parent));
 exports.Child = Child;
+/*class Parent{
+    constructor (type){
+      this.type=type;
+    }
+    gettype(){
+      return this.type;
+    }
+}
+class Child extends Parent{
+    constructor(type,username){
+       super(type);
+       this.username = username;
+    }
+    getinfo(){
+       return this.username + this.type;
+    }
+}
 new Parent("已审核");
-new Child("管理员");
->>>>>>> 3eb04128051396c0e639ce669526acd73e44aae1
+new Child("管理员")
+export {Child}*/

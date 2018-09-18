@@ -44,8 +44,7 @@
 	import layer from '../public/layer.vue'
 	import selCity from '../public/select.vue'
 	import {Validate} from  '../assets/js/validate.js'
-	import {Child} from '../assets/ts/geeter.js'
-	console.log(Child)
+	//import {Child} from '../assets/ts/geeter.js'
 	let lodash = require('lodash');
 	let vm;
 	import {mapState,mapMutations} from 'vuex'
@@ -63,28 +62,20 @@
 					pwd:'',
 					spwd:'',
 					number:'',
-<<<<<<< HEAD
 					email:'',
 					version:''
-				}
-=======
-					email:''
 				},
 				message:''
->>>>>>> 3eb04128051396c0e639ce669526acd73e44aae1
 			}
 		},
 		components:{layer,selCity},
 		created(){
 			vm = this;
-<<<<<<< HEAD
 			this.updateVersion("一般版");
 			this.form.version = this.$store.state.ver;
-=======
 			//var parent = new Parent("已审核");
 			//var child=new Child(this.form.username);
-		//	this.message = child.getinfo()
->>>>>>> 3eb04128051396c0e639ce669526acd73e44aae1
+			//this.message = child.getinfo()
 		},
 		watch:{
 			'form.username':'name',
