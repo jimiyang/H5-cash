@@ -25,7 +25,7 @@ import {mapMutations} from 'vuex'
 export default {
   data(){
     return {
-		price:1050.2,
+		price:6201.09,
 		message:'请求链接已过时...',
 		hide:true,
 		version:''

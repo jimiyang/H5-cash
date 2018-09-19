@@ -26,7 +26,7 @@
 					<li  class="border">
 						短信验证码
 						<label><input type="number" class="ipt"  placeholder="请输入验证码"/></label>
-						<span class="send">发送验证码</span>
+						<span class="send" @click="send">{{sendtitle}}</span>
 					</li>
 				</ul>
 				<p class="notice">温馨提示：发起提现申请成功后2小时内到账</p>
@@ -49,7 +49,9 @@ export default{
 			},
 			sum:'1',
 			message:'',
-			hide:true
+			hide:true,
+			sendtitle:'发送验证码',
+			timeNum:6
 		}
 	},
 	components:{layer},
@@ -68,6 +70,22 @@ export default{
 		})
 	},
 	methods:{
+		send(){
+			let _this = this;
+			let clear = function(){
+				window.clearInterval(oop);
+				_this.sendtitle="发送验证码";
+				_this.timeNum=6;
+			}
+			let oop = window.setInterval(function(){
+				if(_this.timeNum<=1){
+					clear();
+				}else{
+					_this.timeNum--;
+					_this.sendtitle=`${_this.timeNum}s`;
+				}
+			},1000);
+		},
 		all(){
 			if(this.sum==0 || this.sum==0.00){
 				this.message ="您的提现余额为0元";

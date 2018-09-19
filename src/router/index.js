@@ -18,8 +18,8 @@ export default new Router({
 	routes: [
 		{
 			path:'/',
-			name:'Temp',
-			component:Temp
+			name:'Balance',
+			component:Balance
 		},
 		{
 		  path: '/',
