@@ -17,6 +17,7 @@
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "better-scroll": "^1.12.4",
+    "es6-promise": "^4.2.5",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "lodash": "^4.17.10",

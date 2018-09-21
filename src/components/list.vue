@@ -6,7 +6,10 @@
 			<div class="main"></div>
 		</div>
 		<section class="pageCont putCash">
-			<h1 class="selDate" id="sel" @click="selDate"><em class="sdate">{{startTime}}</em>至<em class="edate">{{endTime}}</em></h1>
+			<h1 class="selDate" id="sel" @click="selDate">
+				<em class="sdate">{{startTime}}</em>至<em class="edate">{{endTime}}</em>
+				<span>{{message}}</span>
+			</h1>
 			<div  class="list wrapper" ref="wrapper">
 				<ul class="orderInfo content" id="thelist" >
 					<li  v-for="(item,index) in data">
@@ -39,6 +42,7 @@ export default{
 			hide:true,
 			anihide:true,
 			anishow:false,
+			message:"fail"
 		}
 	},
 	components:{
@@ -48,9 +52,10 @@ export default{
 		document.getElementsByTagName("body")[0].className="hidden";
 	},
 	created(){
-		var url = '../static/data.json'
-		this.$axios.get(url).then(rs=>{
-			this.data = rs.data;
+		var url = '../static/data.json';
+		let _this =this;
+		/*this.promiseFun(url).then((rs)=>{
+			this.data = rs;
 			this.$nextTick(() => {
 				this.scroll = new Bscroll(this.$refs.wrapper,{
 					momentum:true,
@@ -59,14 +64,35 @@ export default{
 				})
 			})
 		})
+		.catch(function(reason){
+			console.log('rejected');
+			console.log(reason);
+		})*/
+		
+		Promise.all([this.promiseFun(url),this.fun2()])
+		.then((rs)=>{
+			console.log(rs[0])
+			this.message=rs[1];
+		})
 	},
 	methods:{
+		fun2(){
+			return new Promise((resolve,reject)=>{
+				resolve("success");
+			})
+		},
+		promiseFun (url) {
+			this.$axios.get(url).then((res) => {
+				this.data = res.data;
+			})
+			return new Promise((resolve, reject) => {
+				resolve(this.data)
+		    })
+		},
 		selDate(){
-			
 			this.anihide=false;
 			this.hide=false;
 			this.anishow=true;
-			
 		},
 		onstart(value){
 			this.startTime=value;
